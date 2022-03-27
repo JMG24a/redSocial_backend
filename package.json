@@ -1,0 +1,19 @@
+{
+  "name": "red_social_backend",
+  "version": "1.0.0",
+  "description": "practica de microServicios",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JMG24a/redSocial_backend.git"
+  },
+  "author": "jose <jmg24a@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JMG24a/redSocial_backend/issues"
+  },
+  "homepage": "https://github.com/JMG24a/redSocial_backend#readme"
+}
