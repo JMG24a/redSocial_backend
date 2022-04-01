@@ -164,3 +164,8 @@ dist
 # Support for Project snippet scope
 
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
+
+.dockerignore
+mysql_data
+postgres_data
+db.sql
