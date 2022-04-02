@@ -4,6 +4,7 @@
   "description": "practica de microServicios",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/JMG24a/redSocial_backend/issues"
   },
-  "homepage": "https://github.com/JMG24a/redSocial_backend#readme"
+  "homepage": "https://github.com/JMG24a/redSocial_backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "nanoid": "^3.3.2",
+    "request": "^2.88.2",
+    "swagger-ui-express": "^4.3.0"
+  }
 }

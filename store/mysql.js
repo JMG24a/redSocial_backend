@@ -39,9 +39,9 @@ const handleCon = () =>{
 handleCon()
 
 
-const get = (tabla) => {
+const list = (table) => {
     return new Promise ((resolve,reject)=>{
-        connection.query(`SELECT * FROM ${tabla}`,(err,data)=>{
+        connection.query(`SELECT * FROM ${table}`,(err,data)=>{
             if(err){
                 reject('Error of connection')
             }
@@ -50,20 +50,20 @@ const get = (tabla) => {
     });
 }
 
-const find = (tabla,search,option) => {
+const find = (table,search,option) => {
     return new Promise ((resolve,reject)=>{
-        connection.query(`SELECT * FROM ${tabla} WHERE ${option} = '${search}'`,(err, data) => {
+        connection.query(`SELECT * FROM ${table} WHERE ${option} = '${search}'`,(err, data) => {
             if(err){
-                resolve(res = {data,exists: false})
+                reject('Error of connect')
             }
-            resolve(res = {data,exists: true})
+            resolve(data)
         })
     })
 }
 
-const add = (tabla,body) => {
+const add = (table,body) => {
     return new Promise ((resolve,reject)=>{
-        connection.query(`INSERT INTO ${tabla} SET ?`, body, (err, data) => {
+        connection.query(`INSERT INTO ${table} SET ?`, body, (err, data) => {
             if(err){
                 reject('Error of connection')
             }
@@ -72,9 +72,42 @@ const add = (tabla,body) => {
     })
 }
 
+const update = (table,body,id) => {
+    return new Promise ((resolve,reject)=>{
+        connection.query(`UPDATE ${table} SET ? WHERE id=?`, [body,id], (err, data) => {
+            if(err){
+                reject('Error of connection')
+            }
+            resolve(data)
+        })
+    })
+}
+
+const query = (select = '', from = '', join, where) =>{
+    return new Promise ((resolve, reject)=>{
+
+        let myQuery = `SELECT ${select} FROM ${from} `
+        if(join){
+            myQuery += `JOIN ${join} `
+        }
+        if(where){
+            myQuery += `WHERE ${where} `
+        }
+
+        connection.query(`${myQuery}`, (err, res) => {
+            if (err){
+                return reject(err);
+            } 
+            resolve(res || null);
+        })
+    })
+}
+
 
 module.exports = {
-    get,
+    list,
     add,
-    find
+    find,
+    update,
+    query
 }

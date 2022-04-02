@@ -9,6 +9,10 @@ const config = {
         password: process.env.MYSQL_PASSWORD || 'secret',
         database: process.env.MYSQL_DB || 'red_social',
         port: process.env.MYSQL_PORT || '3306',
+    },
+    serviceMysql:{
+        host: process.env.MCS_MYSQL_HOST || 'localhost',
+        port: process.env.MCS_MYSQL_PORT || '3002'
     }
 }
 
