@@ -169,3 +169,4 @@ dist
 mysql_data
 postgres_data
 db.sql
+.vercel

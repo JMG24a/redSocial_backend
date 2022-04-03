@@ -8,7 +8,7 @@ const router = Router();
 const list = async(req,res) => {
     try{
         const success = await controller.list(req.params.table)
-        res.json(success)
+        response.success(req,res,success,200)
     }catch(err){
         res.json(err)
     }

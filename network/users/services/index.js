@@ -11,6 +11,7 @@ module.exports = (injectStore) => {
 
     const getUsers = async() => {
         const users = await db.list(TABLE)
+        console.log(users)
         return users
     }
 
@@ -41,7 +42,6 @@ module.exports = (injectStore) => {
         const existsUsername = await findUser(TABLE,body.username,'username');
         console.log(existsUsername)
         if(existsUsername.length > 0){
-            console.log('KSKDKSDKDSKDSKDSKK')
             throw new Error('username all ready exists') 
         }
    
