@@ -39,15 +39,17 @@ module.exports = (injectStore) => {
         }
 
         const existsUsername = await findUser(TABLE,body.username,'username');
+        console.log(existsUsername)
         if(existsUsername.length > 0){
-            return 'username all ready exists'
+            console.log('KSKDKSDKDSKDSKDSKK')
+            throw new Error('username all ready exists') 
         }
    
         const existsEmail = await findUser('authorizations',body.email, 'email');
         if(existsEmail.length > 0){
             return 'email all ready exists'
         }
-        console.log('dssd',existsEmail)
+ 
         const isSave = await db.update_insert(TABLE,user)
         if(isSave){
             const success = await authController.addAuthUser(authUser)

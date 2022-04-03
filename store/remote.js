@@ -33,16 +33,16 @@ function createRemoteDB (host, port){
             url += `/${data.id}/${data.option}`
         }else if(data){
             options.body = JSON.stringify(data)
-            console.log('O',options)
         }
-        console.log(url)
+
         return new Promise((resolve, reject) => {
              fetch(url,options)
-                .then((res)=>{
-                    const data = res.json();
-                    resolve(data)
+                .then(async(res)=>{
+                    const data = await res.json();
+                    resolve(data.body)
                 })
                 .catch(err => {
+
                     console.log('[ERROR]: ',err)
                     reject(err)
                 })

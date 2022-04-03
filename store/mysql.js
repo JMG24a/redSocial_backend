@@ -46,7 +46,6 @@ const list = (table) => {
             if(err){
                 reject('Error of connection')
             }
-            console.log('Suce', data)
             resolve(data)
         })
     });
@@ -56,6 +55,7 @@ const find = (table,data) => {
     return new Promise ((resolve,reject)=>{
         connection.query(`SELECT * FROM ${table} WHERE ${data.option} = '${data.id}'`,(err, row) => {
             if(err){
+                console.log('YAexiste')
                 reject('Error of connect')
             }
             resolve(row)
