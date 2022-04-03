@@ -13,6 +13,9 @@ const config = {
     serviceMysql:{
         host: process.env.MCS_MYSQL_HOST || 'localhost',
         port: process.env.MCS_MYSQL_PORT || '3002'
+    },
+    servicePost:{
+        port: process.env.MCS_POST_PORT || '3003'
     }
 }
 

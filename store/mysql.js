@@ -40,28 +40,31 @@ handleCon()
 
 
 const list = (table) => {
+    console.log('TABLA', table)
     return new Promise ((resolve,reject)=>{
         connection.query(`SELECT * FROM ${table}`,(err,data)=>{
             if(err){
                 reject('Error of connection')
             }
+            console.log('Suce', data)
             resolve(data)
         })
     });
 }
 
-const find = (table,search,option) => {
+const find = (table,data) => {
     return new Promise ((resolve,reject)=>{
-        connection.query(`SELECT * FROM ${table} WHERE ${option} = '${search}'`,(err, data) => {
+        connection.query(`SELECT * FROM ${table} WHERE ${data.option} = '${data.id}'`,(err, row) => {
             if(err){
                 reject('Error of connect')
             }
-            resolve(data)
+            resolve(row)
         })
     })
 }
 
 const add = (table,body) => {
+    console.log(table,'Body', body)
     return new Promise ((resolve,reject)=>{
         connection.query(`INSERT INTO ${table} SET ?`, body, (err, data) => {
             if(err){

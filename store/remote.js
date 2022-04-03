@@ -1,4 +1,4 @@
-const request = require('request');
+const fetch = require('node-fetch');
 
 function createRemoteDB (host, port){
     const URL = 'http://'+ host + ':' + port;
@@ -7,39 +7,52 @@ function createRemoteDB (host, port){
         return req('GET', table);
     }
 
-    // const find = (table, id, option) =>{
-    //     return req 
-    // }
+    const find = (table, id) =>{
+        return req('GET', table, id)
+    }
 
-    // function upsert(table, data)
-    // function query(table, query, join)
+    const update = (table, body) => {
+        return req('PATCH', body)
+    }
+
+    const update_insert = (table, body) =>{
+        if(body.update){
+            return update(table,body)
+        }
+        return req('POST', table, body)
+    }
 
     const req = (method, table, data) =>{
         let url = URL + '/mysql/v1/' + table;
-        let body = "";
+        let options = {
+            method: method,
+            headers: {'content-type': 'application/json'},
+        }
 
+        if(method === 'GET' && data){
+            url += `/${data.id}/${data.option}`
+        }else if(data){
+            options.body = JSON.stringify(data)
+            console.log('O',options)
+        }
+        console.log(url)
         return new Promise((resolve, reject) => {
-            request({
-                method,
-                headers: {
-                    'content-type': 'application/json'
-                },
-                url,
-                body,
-            }, (err, req, body) => {
-                if (err) {
-                    console.error('Error con la base de datos remota', err);
-                    return reject(err.message);
-                }
-
-                const resp = JSON.parse(body);
-                return resolve(resp);
-            })
+             fetch(url,options)
+                .then((res)=>{
+                    const data = res.json();
+                    resolve(data)
+                })
+                .catch(err => {
+                    console.log('[ERROR]: ',err)
+                    reject(err)
+                })
         })
     }
 
     return {
         list,
+        find,
+        update_insert
     }
 }
 

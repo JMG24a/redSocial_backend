@@ -18,12 +18,15 @@
   },
   "homepage": "https://github.com/JMG24a/redSocial_backend#readme",
   "dependencies": {
+    "axios": "^0.26.1",
     "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "nanoid": "^3.3.2",
+    "node-fetch": "^2.6.7",
     "request": "^2.88.2",
     "swagger-ui-express": "^4.3.0"
   }

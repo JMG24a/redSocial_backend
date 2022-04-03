@@ -18,7 +18,8 @@ module.exports = (injectStore) => {
         if(!id){
             throw new Error('Bad Request')
         }
-        const user = await db.find(tabla,id,option)
+        const data = { id: id, option: option }
+        const user = await db.find(tabla,data)
         return user
     }
 
@@ -26,13 +27,13 @@ module.exports = (injectStore) => {
         const id = nanoid()
 
         const user = {
-            id,
+            id: id,
             username: body.username,
             name: body.name,
             lastName: body.lastName
         }
         const authUser = {
-            id,
+            id: id,
             email: body.email,
             password: body.password
         }
@@ -46,8 +47,8 @@ module.exports = (injectStore) => {
         if(existsEmail.length > 0){
             return 'email all ready exists'
         }
-
-        const isSave = await db.add(TABLE,user)
+        console.log('dssd',existsEmail)
+        const isSave = await db.update_insert(TABLE,user)
         if(isSave){
             const success = await authController.addAuthUser(authUser)
             return success

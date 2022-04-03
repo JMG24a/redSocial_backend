@@ -2,12 +2,10 @@ const express = require('express');
 const app = express();
 const appRoutes = require('./network')
 const appDocs = require('./docs')
-
 const errors = require('./middleware/error')
+const bodyParser = require('body-parser');
 
-// app.use(express.json())
-// app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.json());
 appRoutes(app)
 appDocs(app)
 
